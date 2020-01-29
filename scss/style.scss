@@ -1,0 +1,1051 @@
+@import "mixins";
+
+
+/*----------VARIABLES
+*/
+
+$white: #ffffff;
+$black: #000000;
+$primary:   #7B5FFF;
+$secondary: #7B5FFF;
+$accent:    #AA36C8;
+$dark:      #25303A;
+$grey2: rgba(78,87,95,1);   //4e575f
+$grey3: rgba(166,171,174,1);//a6abae
+$grey4: rgba(217,223,225,1);//d9dfe1
+$grey5: rgba(249,250,251,1);//f9fafb
+$grey5: rgba(236,236,236,1);//ececec
+
+
+/*----------EFFECTS
+*/
+
+:focus,
+:active {
+    outline: none;
+}
+
+input {
+	-webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.375;
+}
+
+::selection {
+  background: $grey5;
+}
+::-moz-selection {
+  background: $grey5;
+}
+
+a,
+a:hover
+a:focus {
+    color: inherit;
+    text-decoration: inherit;
+    @include transition(all .25s ease-in-out);
+}
+
+header.bounceInDown,
+nav.bounceInUp {
+    @include animation-duration(.75s);
+}
+
+aside {
+    .fadeIn,
+    .fadeOut {
+        @include animation-duration(.375s);
+    }
+
+    .wrapper.bounceInDown,
+    .wrapper.bounceOutUp {
+        @include animation-duration(.75s);
+    }
+}
+
+header.wrapper {
+    &.bounceInDown {
+        @include animation-delay(.125s);
+        @include animation-duration(1s);
+    }
+    &.fadeIn {
+        @include animation-delay(.75s);
+        @include animation-duration(.25s);
+    }
+}
+
+.contact.fadeIn {
+    @include animation-delay(.5s);
+    @include animation-duration(.5s);
+}
+
+.education.fadeIn {
+    @include animation-delay(.875s);
+    @include animation-duration(.75s);
+}
+
+.interests.fadeIn {
+    @include animation-delay(1s);
+    @include animation-duration(.75s);
+}
+
+.mission.fadeIn {
+    @include animation-delay(.75s);
+    @include animation-duration(.5s);
+}
+
+.experience.fadeIn {
+    @include animation-delay(1s);
+    @include animation-duration(.75s);
+}
+
+.skills.fadeIn {
+    @include animation-delay(1.125s);
+    @include animation-duration(.725s);
+}
+
+input:not(focus):invalid,
+input:not(focus).error {
+    background: url(../images/error@2x.svg) $white no-repeat;
+    background-size: 20px 17px;
+    background-position: 98% 50%;
+    border-color: $primary!important;
+}
+
+input:focus:invalid {
+    background: $white!important;
+    border-color: $grey4!important;
+}
+
+
+/*----------BODY
+*/
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    font-size: 62.5%; /* 1em = 10px */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: normal;
+    color: $dark;
+}
+
+body {
+    display: none;
+
+    .wrapper {
+        display: block;
+        max-width: 1024px;
+        margin: 0 auto;
+        height: auto;
+        width: auto;
+        padding: 0 16px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow: inherit;
+    }
+
+    .toggle {
+        float: right;
+        position: absolute;
+        top: 200px;
+        right: 200px;
+        font-size: 3em;
+        z-index: 999;
+    }
+
+    header {
+        top: -30px;
+    }
+
+    header,
+    nav {
+        float: left;
+        position: fixed;
+        width: 100%;
+        height: 92px;
+        background: $dark;
+        color: $primary;
+        font-size: 1.8em;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 100;
+        clear: both;
+
+        &:hover {
+            background: $primary;
+            @include transition(all .5s ease-in-out);
+
+            a {
+                color: $white;
+            }
+
+            .wrapper {
+                .home {
+                    &:before {
+                        background-position: -41px 0;
+                    }
+                }
+
+                .message {
+                    &:before {
+                        background-position: 0 -135px;
+                    }
+                }
+            }
+        }
+
+        .wrapper {
+            padding-top: 30px;
+
+            a {
+                padding: 16px 0;
+            }
+
+            .home {
+                float: left;
+                margin-top: 2px;
+
+                &:before {
+                    float: left;
+                    content: "";
+                    width: 40px;
+                    height: 25px;
+                    background: url(../images/murphyO_sm@2x.svg) no-repeat;
+                    background-size: 121px 25px;
+                    background-position: 0 0;
+                    margin: -2px 8px 0 0;
+                    @include transition(all .25s ease-in-out);
+                }
+
+                &:hover {
+                    &:before {
+                        background-position: -41px 0;
+                    }
+                }
+            }
+
+            .message {
+                float: right;
+                margin-top: 2px;
+
+                &:before {
+                    float: left;
+                    content: "";
+                    width: 24px;
+                    height: 24px;
+                    background: url(../images/icons@2x.svg) no-repeat;
+                    background-size: 74px 199px;
+                    background-position: -25px -135px;
+                    margin: 1px 8px 0 0;
+                    @include transition(all .25s ease-in-out);
+                }
+            }
+        }
+    }
+
+    nav {
+        display: none;
+        position: fixed;
+        bottom: -30px;
+        padding: 9px 0;
+
+        &.phone {
+            &:hover {
+                background: $dark;
+            }
+        }
+
+        ul {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+
+            li {
+                display: inline-block;
+                text-indent: -9999px;
+                width: 44px;
+                height: 44px;
+
+                a {
+
+                    &:before {
+                        float: left;
+                        content: "";
+                        width: 24px;
+                        height: 24px;
+                        background: url(../images/icons@2x.svg) no-repeat;
+                        background-size: 74px 220px;
+                        margin: 10px;
+                        opacity: 0.5;
+                        @include transition(all 0s ease-in-out);
+                    }
+                }
+
+                a:hover,
+                a:active,
+                a.active {
+                    &:before {
+                        opacity: 1;
+                        @include transition(all 0.25s ease-in-out);
+
+                    }
+                }
+
+                &:first-child {
+                    width: 58px;
+
+                    a:before {
+                        width: 38px;
+                        height: 24px;
+                        background: url(../images/murphyO_sm@2x.svg) no-repeat;
+                        background-size: 116px 24px;
+                        background-position: 0px 0;
+                    }
+                }
+
+                &:nth-child(2) {
+                    a:before {
+                        background-position: -25px 0;
+                    }
+                }
+
+                &:nth-child(3) {
+                    a:before {
+                        background-position: -25px -25px;
+                    }
+                }
+
+                &:nth-child(4) {
+                    a:before {
+                        background-position: -25px -50px;
+                    }
+                }
+
+                &:nth-child(5) {
+                    a:before {
+                        background-position: -25px -100px;
+                    }
+                }
+
+                &:last-child {
+                    a:before {
+                        background-position: -25px -75px;
+                    }
+                }
+            }
+        }
+    }
+
+    aside {
+        display: none;
+        position: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+
+        &:before {
+            content: "";
+            position: absolute;
+            display: block;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(37,48,58,.7);
+        }
+
+        .wrapper {
+            width: 580px;
+            margin-top: 78px;
+            background: $white;
+            padding: 16px;
+            @include border-radius(4px);
+            @include box-shadow(0 2px 10px $grey2);
+
+            form {
+
+                fieldset {
+                    padding: 0;
+                    border: 0;
+                }
+            }
+
+            h2,
+            input,
+            textarea {
+                margin: 8px 0 24px 0;
+            }
+
+            h2 {
+                display: block;
+                font-size: 2em;
+
+                span {
+                    font-weight: normal;
+                    font-size: .875em;
+                }
+
+                &.sent {
+                    display: none;
+                    color: $dark;
+                    text-align: center;
+                    margin-bottom: 10px!important;
+                }
+
+                &.error {
+                    display: none;
+                    color: $primary;
+                }
+            }
+
+            label {
+                font-size: 1.6em;
+            }
+
+            input {
+                display: block;
+                width: 100%;
+                font-size: 1.6em;
+                color: $black;
+                padding: 12px 10px;
+                border: 1px solid $grey4;
+                @include border-radius(4px);
+
+                &:focus {
+                    @include box-shadow(0 1px 6px $grey4);
+                }
+            }
+
+            textarea {
+                display: block;
+                width: 100%;
+                font-size: 1.6em;
+                line-height: 1.5;
+                height: 126px;
+                color: $black;
+                padding: 12px 10px;
+                border: 1px solid $grey4;
+                resize: none;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                @include border-radius(4px);
+
+                &:focus {
+                    @include box-shadow(0 1px 6px $grey4);
+                }
+            }
+
+            button {
+                font-size: 1.8em;
+                font-weight: normal;
+                border: none;
+                background: $primary;
+                color: $white;
+                padding: 12px 10px;
+                @include border-radius(4px);
+                @include transition(all .25s ease-in-out);
+
+                &:hover {
+                    @include border-radius(12px);
+                    @include box-shadow(0 1px 6px $grey3);
+                }
+
+                &:focus,
+                &:active {
+                    background: $dark;
+                    color: $primary;
+                    @include box-shadow(0 1px 6px $grey3);
+                }
+
+                &:disabled {
+                    opacity: .5;
+
+                    &:hover {
+                    @include border-radius(4px);
+                    @include box-shadow(0 0 0 $grey3);
+                }
+                }
+            }
+        }
+    }
+
+    #skillsModal {
+        .wrapper {
+            h2 {
+                position: relative;
+                margin: 16px 0 0 24px;
+                z-index: 200;
+            }
+
+            #chart {
+                margin-top: -24px;
+
+                > div:nth-child(1) > div > svg > g:nth-child(3) > g:nth-child(2) > g:nth-child(2) > rect {
+                    @include transition(all .25s ease-in-out);
+
+                    &:hover {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+    }
+
+    #messageModal {
+        .wrapper {
+            padding: 40px;
+        }
+    }
+
+    .personal {
+        width: 34%;
+    }
+
+    .professional {
+        width: 66%;
+        margin: 24px 0 0 0;
+    }
+
+    .personal,
+    .professional {
+        float: left;
+        position: relative;
+        top:  62px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+
+        .contact {
+            margin: 0 0 24px 0;
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    display: block;
+                    min-height: 24px;
+                    font-size: 1.6em;
+                    margin: 4px 0;
+
+                    a {
+                        color: $dark;
+                        text-decoration: underline;
+                        padding: 0 0 0 8px;
+                        @include transition(all .25s ease-in-out);
+
+                        &:hover {
+                            color: $secondary;
+                        }
+                    }
+
+                    &:first-child {
+                        text-indent: -9999px;
+                        width: 112px;
+                        height: 70px;
+                        background: url(../images/murphyO@2x.svg) no-repeat;
+                        background-size: 336px 70px;
+                        background-position: 0 0;
+                        margin: 24px 0;
+                    }
+
+                    &:nth-child(2) {
+                        color: $primary;
+                        font-size: 2.5em;
+                        font-weight: bold;
+                    }
+
+                    &:nth-child(3) {
+                        color: $grey3;
+                    }
+
+                    .email,
+                    .website,
+                    .twitter,
+                    .github,
+                    .linkedin {
+                        &:before {
+                            float: left;
+                            content: "";
+                            width: 24px;
+                            height: 24px;
+                            background: url(../images/icons_sm@2x.svg) no-repeat;
+                            background-size: 74px 128px;
+                            margin: -2px 0 0 0;
+                            @include transition(all .25s ease-in-out);
+                        }
+                    }
+
+                    .email {
+                        &:before {
+                            background-position: 0 0;
+                        }
+
+                        &:hover {
+                            &:before {
+                                background-position: -25px 0;
+                            }
+                        }
+                    }
+
+                    .website {
+                        &:before {
+                            background-position: 0 -25px;
+                        }
+
+                        &:hover {
+                            &:before {
+                                background-position: -25px -25px;
+                            }
+                        }
+                    }
+
+                    .twitter {
+                        &:before {
+                            background-position: 0 -50px;
+                        }
+
+                        &:hover {
+                            &:before {
+                                background-position: -25px -50px;
+                            }
+                        }
+                    }
+
+                    .linkedin {
+                        &:before {
+                            background-position: 0 -100px;
+                        }
+
+                        &:hover {
+                            &:before {
+                                background-position: -25px -100px;
+                            }
+                        }
+                    }
+
+                    .github {
+                        &:before {
+                            background-position: 0 -75px;
+                        }
+
+                        &:hover {
+                            &:before {
+                                background-position: -25px -75px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .education,
+        .interests,
+        .mission,
+        .experience,
+        .skills {
+            margin: 0 0 21px 0;
+
+            * {
+                font-size: 1.6em;
+            }
+
+            h1 {
+                color: $primary;
+                font-size: 2em;
+                margin: 6px 0 8px 0;
+                letter-spacing: 1px;
+
+                &:before {
+                    float: left;
+                    content: "";
+                    width: 24px;
+                    height: 24px;
+                    background: url(../images/icons@2x.svg) no-repeat;
+                    background-size: 74px 199px;
+                    margin: 0px 8px 0 0;
+                }
+
+                &:hover {
+                   &:before {
+                       @include transition(all .25s ease-in-out);
+                   }
+                }
+            }
+
+            h2 {
+                margin: 16px 0 6px 0;
+            }
+
+            h3 {
+                font-size: 1em;
+                margin-top: 24px;
+
+                a {
+                    &:before {
+                        float: left;
+                        content: "";
+                        width: 24px;
+                        height: 24px;
+                        background: url(../images/icons@2x.svg) no-repeat;
+                        background-size: 74px 199px;
+                        background-position: 0 -125px;
+                        margin: -2px 0 0 0;
+                        padding: 0 8px 0 0;
+                    }
+                }
+            }
+
+            p,
+            ul {
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            p {
+                margin-bottom: 12px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            ul {
+                list-style: none;
+                margin: 0 0 10px 0;
+                padding: 0;
+
+                li {
+
+                    &:first-child {
+                        font-size: .875em;
+                        color: $grey3;
+                    }
+
+                    &:nth-child(2) {
+                        font-size: 1.125em;
+                        font-weight: bold;
+                    }
+
+                    &:last-child {
+                        font-size: 1em;
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
+        .education {
+            h1 {
+                &:before {
+                    background-position: 0 -89px;
+                }
+            }
+        }
+
+        .interests {
+            h1 {
+                &:before {
+                    background-position: 0 -66px;
+                }
+            }
+        }
+
+        .mission {
+            h1 {
+                &:before {
+                    background-position: 0 0;
+                }
+
+                // &:hover {
+                //     &:before {
+                //         background-position: -24px 0;
+                //     }
+                // }
+            }
+        }
+
+        .experience {
+            h1 {
+                &:before {
+                    background-position: 0 -22px;
+                }
+            }
+
+            a {
+                font-size: inherit;
+                color: inherit;
+            }
+        }
+
+        .skills {
+            h1 {
+                &:before {
+                    background-position: 0 -44px;
+                }
+
+                &:first-of-type:before {
+                    background-position: 0 -155px;
+                }
+            }
+        }
+
+        .interests {
+            ul {
+                li {
+                    font-size: 1em!important;
+                    color: $dark!important;
+                    font-weight: normal!important;
+                }
+            }
+        }
+
+        .experience,
+        .skills {
+            float: left;
+            padding: 0 16px 0 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .experience {
+            width: 50%;
+
+            ul {
+                border-left: 2px solid $grey3;
+                margin-left: 12px;
+                margin-bottom: 0;
+                padding-bottom: 10px;
+
+                &:first-of-type:before {
+                    content: '';
+                    width: 2px;
+                    height: 32px;
+                    background: $white;
+                    position: absolute;
+                    left: 12px;
+                    margin-top: 0;
+                }
+
+                &:hover {
+                    li:nth-child(2) {
+                        color: $secondary;
+                    }
+
+                    li:nth-child(2):before {
+                        width: 14px;
+                        height: 14px;
+                        background: $secondary;
+                        position: absolute;
+                        left: 6px;
+                        margin-top: 6px;
+                        border-radius: 14px;
+                        @include box-shadow(0 1px 6px $grey4);
+                    }
+                }
+
+                li {
+                    margin-left: 20px;
+
+                    &:nth-child(2):before {
+                        content: '';
+                        width: 10px;
+                        height: 10px;
+                        background: $grey3;
+                        position: absolute;
+                        left: 8px;
+                        margin-top: 8px;
+                        border-radius: 10px;
+                        transition: all 0.125s ease-out;
+                    }
+                }
+            }
+        }
+
+        .skills {
+            width: 50%;
+        }
+    }
+}
+
+
+
+/*----------Media Queries
+*/
+
+@media screen and (min-width: 1024px) {
+
+    .web {
+        display: block;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .tablet {
+        display: block;
+    }
+
+    body {
+
+        .wrapper{
+            max-width: 768px;
+        }
+
+        .professional {
+            margin: 0;
+        }
+
+        .personal,
+        .professional {
+            width: 100%;
+
+            .contact,
+            .education,
+            .interests {
+                float: left;
+                width: 50%;
+            }
+
+            .education {
+                margin: 24px 0 16px 0;
+            }
+
+            .interests {
+                margin: 0;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .web,
+    .tablet {
+        display: none;
+    }
+
+    .phone {
+        display: block;
+    }
+
+    .contact {
+        &.fadeIn {
+            @include animation-delay(.25s);
+            @include animation-duration(.5s);
+        }
+    }
+
+    .education,
+    .interests,
+    .mission,
+    .experience,
+    .skills {
+        &.fadeIn {
+            @include animation-delay(0);
+            @include animation-duration(.5s);
+        }
+    }
+
+    body {
+
+        aside {
+            display: none;
+
+            .wrapper {
+                width: 320px;
+            }
+        }
+
+        .personal,
+        .professional {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            top: 16px;
+
+            .contact,
+            .education,
+            .interests,
+            .mission,
+            .experience,
+            .skills {
+                width: 100%;
+                height: 100%;
+                padding: 4px 32px 78px 32px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .education,
+            .interests,
+            .mission,
+            .experience,
+            .skills {
+                display: none;
+            }
+
+            .contact,
+            .experience,
+            .education,
+            .interests {
+                float: none;
+                margin: 0 auto;
+                max-width: 320px;
+            }
+
+            .experience {
+                position: relative;
+                ul {
+                    &:first-of-type:before {
+                        left: 44px;
+                    }
+
+                    &:hover {
+                        li:nth-child(2):before {
+                            left: 38px;
+                        }
+                    }
+
+                    li:nth-child(2):before {
+                        left: 40px;
+                    }
+                }
+            }
+
+            .contact {
+                ul {
+                    li {
+                        margin: 16px 0;
+                    }
+                }
+            }
+
+            .skills {
+                h3 {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
